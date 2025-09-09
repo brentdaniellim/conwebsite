@@ -441,3 +441,28 @@ p {
   margin-top: 1rem;
   display: none;
 }
+
+#music-container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 9999;
+}
+
+#musicBtn {
+  background: #98FF98;      /* mint green */
+  color: #013220;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-family: 'Sacramento', cursive;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#musicBtn:hover {
+  background: #76d976;
+  transform: scale(1.05);
+}

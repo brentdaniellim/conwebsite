@@ -72,9 +72,13 @@ function checkPassword() {
     document.getElementById("password-page").style.display = "none";
     document.getElementById("main-content").style.display = "block";
 
-    // Delay animations by 1 second
-    setTimeout(() => { startAnimations(); }, 1000);
+    // Start music after entering main content
+    startMusic();
+
+    // Optional: start main animations after a delay
+    setTimeout(() => { startAnimations(); }, 500); // adjust delay if needed
   } else {
+    // Wrong password
     errorMsg.style.display = "block";
   }
 }
@@ -105,6 +109,40 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+const musicBtn = document.getElementById('musicBtn');
+const bgMusic = document.getElementById('bgMusic');
+
+bgMusic.volume = 0.3;
+
+let isPlaying = false;
+
+// Function to start or pause music
+function toggleMusic() {
+  if (isPlaying) {
+    bgMusic.pause();
+    musicBtn.textContent = '🎵 Play Music';
+  } else {
+    bgMusic.play().catch(e => {
+      console.log("Autoplay blocked. User interaction required.");
+    });
+    musicBtn.textContent = '⏸️ Pause Music';
+  }
+  isPlaying = !isPlaying;
+}
+
+// Play music automatically when password unlocks main content
+function startMusic() {
+  bgMusic.play().catch(e => {
+    console.log("Autoplay blocked. Click button to start music.");
+  });
+  isPlaying = true;
+  musicBtn.textContent = '⏸️ Pause Music';
+}
+
+// Event listener for button
+musicBtn.addEventListener('click', toggleMusic);
+
 
 // ======= EXTRA.HTML BACK BUTTON =======
 function goBackToMain() {
